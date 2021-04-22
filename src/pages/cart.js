@@ -1,3 +1,5 @@
 import '../static/styles/main.css'
+import App from '../components/App';
+import {PAGES} from '../helpers/constants';
 
-console.log('check 2')
+new App(PAGES.CART);

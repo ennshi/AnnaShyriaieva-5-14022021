@@ -49,6 +49,7 @@ button:focus {
   align-items: center;
   max-width: 945px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .navbar__container a {
