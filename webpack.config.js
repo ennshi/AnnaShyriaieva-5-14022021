@@ -40,13 +40,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/static/index.html',
-            inject: true,
             chunks: ['index']
         }),
         new HtmlWebpackPlugin({
             filename: 'panier.html',
             template: 'src/static/panier.html',
-            inject: true,
             chunks: ['cart']
         }),
     ],

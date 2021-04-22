@@ -10,7 +10,7 @@ class BearsService {
         }
     }
 
-    async getOneBear(id) {
+    async getBearById(id) {
         if(!id) return;
         const endpoint = `/${id}`;
         try {

@@ -18,7 +18,7 @@ async function callApi(endpoint, method = 'GET', data = null) {
 
     return fetch(url, options)
             .then((res) => (res.ok ? res.json() : Promise.reject(Error('Failed to load'))))
-            .then((result) => console.log(result))
+            .then((result) => result)
             .catch((error) => {
                 throw error;
             });

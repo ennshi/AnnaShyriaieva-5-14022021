@@ -1,4 +1,5 @@
 import {bearsService} from '../services/bearsService';
+import {renderBearList} from './bearList';
 
 class App {
     constructor(page) {
@@ -8,10 +9,10 @@ class App {
     }
     async startIndexPage() {
         try {
-            const bears = await bearsService.getAllBears()
-            console.log(bears)
+            const bears = await bearsService.getAllBears();
+            renderBearList(bears);
         } catch (e) {
-            console.log(e)
+            console.log('error', e)
         }
     }
 }
