@@ -1,3 +1,6 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     mode: 'production',
     entry: {
@@ -6,11 +9,45 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: __dirname + '/docs/js',
+        path: path.resolve(__dirname, 'docs/'),
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        },
     },
     devServer: {
-        contentBase: __dirname + '/docs',
-        compress: true,
+        contentBase: path.resolve(__dirname, '/docs'),
         port: 9000,
     },
+    module: {
+        rules: [
+            {
+                test: /\.(html)$/,
+                use: ['html-loader']
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(webp|svg)$/i,
+                type: 'asset/resource',
+            },
+        ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/static/index.html',
+            inject: true,
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'panier.html',
+            template: 'src/static/panier.html',
+            inject: true,
+            chunks: ['cart']
+        }),
+    ],
 };
