@@ -1,4 +1,4 @@
-const API_URL_DEV = '';
+const API_URL_DEV = 'http://localhost:3000/api/teddies';
 
 async function callApi(endpoint, method = 'GET', data = null) {
     const url = API_URL_DEV + endpoint;
@@ -14,7 +14,7 @@ async function callApi(endpoint, method = 'GET', data = null) {
             },
             body: JSON.stringify(data)
         })
-    };
+    }
 
     return fetch(url, options)
             .then((res) => (res.ok ? res.json() : Promise.reject(Error('Failed to load'))))
