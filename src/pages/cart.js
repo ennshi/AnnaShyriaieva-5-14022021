@@ -1,5 +1,3 @@
-import '../static/styles/main.css'
-import App from '../components/App';
-import {PAGES} from '../helpers/constants';
-
-new App(PAGES.CART);
+export function renderCartPage(rootContainer) {
+    rootContainer.innerHTML = '<h1>Panier</h1>'
+}

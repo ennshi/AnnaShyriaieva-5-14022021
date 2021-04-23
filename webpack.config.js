@@ -4,17 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
-        index: './src/pages/index.js',
-        cart: './src/pages/cart.js',
+        index: './src/index.js',
     },
     output: {
-        filename: '[name].js',
+        filename: 'index_bundle.js',
         path: path.resolve(__dirname, 'docs/'),
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        },
     },
     devServer: {
         contentBase: path.resolve(__dirname, '/docs'),
@@ -40,12 +34,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/static/index.html',
-            chunks: ['index']
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'panier.html',
-            template: 'src/static/panier.html',
-            chunks: ['cart']
         }),
     ],
 };

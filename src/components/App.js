@@ -1,19 +1,26 @@
-import {bearsService} from '../services/bearsService';
-import {renderBearList} from './bearList';
+import {router} from '../router/router';
+import {renderHomePage} from '../pages/home';
+import {renderCartPage} from '../pages/cart';
+import {renderBearDetailsPage} from '../pages/bearDetails';
+import {PAGES} from '../helpers/constants';
 
 class App {
-    constructor(page) {
-        if(page === 'INDEX') {
-            return this.startIndexPage()
-        }
+    constructor() {
+        this.rootContainer = document.getElementById('main');
+        this.init();
     }
-    async startIndexPage() {
-        try {
-            const bears = await bearsService.getAllBears();
-            renderBearList(bears);
-        } catch (e) {
-            console.log('error', e)
-        }
+
+    init() {
+        router.set('', renderHomePage.bind(null, this.rootContainer), true);
+        router.set(PAGES.CART, renderCartPage.bind(null, this.rootContainer), false);
+        router.set(PAGES.BEAR_DETAILS, renderBearDetailsPage.bind(null, this.rootContainer), false);
+
+        window.onload = () => {
+            router.push(window.location.hash);
+        };
+        window.onhashchange = () => {
+            router.push(window.location.hash)
+        };
     }
 }
 

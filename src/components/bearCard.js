@@ -1,5 +1,6 @@
 import {createElement} from '../helpers/domHelper';
-import {createBearSelectedView} from './bearSelectedView';
+import {router} from '../router/router';
+import {PAGES} from '../helpers/constants';
 
 const defaultBear = {
     _id: '00',
@@ -14,7 +15,7 @@ export function renderBearCard({_id, name} = defaultBear) {
     const cardContainer = createElement({tagName: 'article', className: 'bear-card__container'});
     const cardName = createElement({tagName: 'h2', className: 'bear-card__title'});
     cardName.innerText = name;
-    cardContainer.addEventListener('click', (e) => createBearSelectedView(e, _id));
+    cardContainer.addEventListener('click', () => router.push(`${PAGES.BEAR_DETAILS}?id=${_id}`));
     cardContainer.append(cardName);
     return cardContainer;
 }
