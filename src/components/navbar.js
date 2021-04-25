@@ -1,0 +1,26 @@
+import {createElement} from '../helpers/domHelper';
+import logo from '../static/assets/img/logo.webp';
+import {router} from '../router/router';
+import {PAGES} from '../helpers/constants';
+
+export function renderNavbar(navbarContainer) {
+    const navbarInnerContainer = createElement({tagName: 'div', className: 'navbar__inner-container'});
+    navbarInnerContainer.append(renderHomeBtn(), renderCartBtn());
+    navbarContainer.appendChild(navbarInnerContainer);
+}
+
+function renderHomeBtn() {
+    const homeBtn = createElement({tagName: 'button', className: 'navbar__btn', attributes: {'aria-label': 'Aller à l\'accueil'}});
+    const logoImage = createElement({tagName: 'img', attributes: {src: logo, alt: 'Orinoco logo'}});
+    homeBtn.appendChild(logoImage);
+    homeBtn.addEventListener('click', () => router.navigate(PAGES.INDEX));
+    return homeBtn;
+}
+
+function renderCartBtn() {
+    const cartBtn = createElement({tagName: 'button', className: 'navbar__btn', attributes: {'aria-label': 'Aller au panier'}});
+    const cartIcon = createElement({tagName: 'i', className: 'fas fa-shopping-cart'});
+    cartBtn.appendChild(cartIcon);
+    cartBtn.addEventListener('click', () => router.navigate(PAGES.CART));
+    return cartBtn;
+}

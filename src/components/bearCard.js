@@ -15,7 +15,7 @@ export function renderBearCard({_id, name} = defaultBear) {
     const cardContainer = createElement({tagName: 'article', className: 'bear-card__container'});
     const cardName = createElement({tagName: 'h2', className: 'bear-card__title'});
     cardName.innerText = name;
-    cardContainer.addEventListener('click', () => router.push(`${PAGES.BEAR_DETAILS}?id=${_id}`));
+    cardContainer.addEventListener('click', () => router.navigate(`${PAGES.BEAR_DETAILS}?id=${_id}`));
     cardContainer.append(cardName);
     return cardContainer;
 }

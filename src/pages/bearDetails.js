@@ -1,6 +1,7 @@
 import {bearsService} from '../services/bearsService';
 import {router} from '../router/router';
 import {renderBearDetailsView} from '../components/bearDetailsView';
+import {PAGES} from '../helpers/constants';
 
 export async function renderBearDetailsPage(rootContainer, { id }) {
     try {
@@ -9,7 +10,7 @@ export async function renderBearDetailsPage(rootContainer, { id }) {
             rootContainer.innerHTML = '';
             rootContainer.appendChild(renderBearDetailsView(bear));
         } else {
-            router.push('');
+            router.navigate(PAGES.INDEX);
         }
     } catch (e) {
         console.log(e);

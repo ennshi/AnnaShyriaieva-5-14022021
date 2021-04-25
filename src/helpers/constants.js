@@ -1,5 +1,5 @@
 export const PAGES = {
-    INDEX: '',
+    INDEX: '#',
     CART: '#panier',
     BEAR_DETAILS: '#ours'
 };

@@ -1,8 +1,24 @@
 import {getHash, getQueryObj} from '../helpers/urlParserHelper';
+import {PAGES} from '../helpers/constants';
+
+const DEFAULT_ROUTE = {
+    hash: PAGES.INDEX,
+    cb: () => {},
+    defaultRoute: true
+};
 
 class Router {
     constructor() {
         this.routes = [];
+    }
+
+    init() {
+        window.onload = () => {
+            this.navigate(window.location.hash);
+        };
+        window.onhashchange = () => {
+            this.navigate(window.location.hash);
+        };
     }
 
     set(hash, cb, defaultRoute) {
@@ -10,15 +26,22 @@ class Router {
         this.routes.push({hash, cb, defaultRoute});
     }
 
-    push(hash) {
-        const route = this.routes.find(r => r.hash === getHash(hash));
+    navigate(hashWithQuery) {
+        const route = this.routes.find(r => r.hash === getHash(hashWithQuery));
         if(route) {
-            window.history.pushState({}, '', hash);
-            return route.cb(getQueryObj(hash))
+            if(window.location.hash !== hashWithQuery) {
+                window.history.pushState({}, '', hashWithQuery);
+            }
+            return route.cb(getQueryObj(hashWithQuery));
         }
-        window.history.replaceState({}, '', '');
-        window.location = '';
-        return this.routes.find(r => r.defaultRoute).cb();
+        this.replaceWithDefaultRoute();
+    }
+
+    replaceWithDefaultRoute() {
+        const defaultRoute = this.routes.find(r => r.defaultRoute) || DEFAULT_ROUTE;
+        window.history.replaceState({}, '', defaultRoute.hash);
+        window.location.hash = defaultRoute.hash;
+        return defaultRoute.cb();
     }
 }
 
