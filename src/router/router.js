@@ -28,13 +28,12 @@ class Router {
 
     navigate(hashWithQuery) {
         const route = this.routes.find(r => r.hash === getHash(hashWithQuery));
-        if(route) {
-            if(window.location.hash !== hashWithQuery) {
-                window.history.pushState({}, '', hashWithQuery);
-            }
-            return route.cb(getQueryObj(hashWithQuery));
+        if(! route) return this.replaceWithDefaultRoute();
+        if(window.location.hash !== hashWithQuery) {
+            window.history.pushState({}, '', hashWithQuery);
         }
-        this.replaceWithDefaultRoute();
+        return route.cb(getQueryObj(hashWithQuery));
+
     }
 
     replaceWithDefaultRoute() {
