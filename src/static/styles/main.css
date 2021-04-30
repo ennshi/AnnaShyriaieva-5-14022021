@@ -2,7 +2,9 @@
   --primary: #F3EAF3;
   --secondary: #452B32;
   --accent-one: #A468BC;
+  --accent-one-light: #c9a4e7;
   --accent-two: #847C84;
+  --accent-three: #ffd3ee;
 }
 
 html,
@@ -13,11 +15,20 @@ body {
   width: 100%;
 }
 
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--accent-one-light);
+  background: -webkit-linear-gradient(0deg, var(--accent-one-light) 0%, var(--primary) 80%);
+  background: linear-gradient(0deg, var(--accent-one-light) 0%, var(--primary) 80%);
+}
+
 * {
   box-sizing: border-box;
 }
 
-h1 {
+h1,
+h2 {
   margin: 0;
 }
 
@@ -59,4 +70,106 @@ button:focus {
 .navbar__container i {
   font-size: 2rem;
   color: var(--accent-one);
+}
+
+/* main */
+
+.main__wrapper {
+  max-width: 945px;
+  width: 100%;
+  padding: 16px;
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  color: var(--secondary);
+}
+
+/* bear-list */
+
+.bear-list__container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bear-card__container {
+  display: flex;
+  width: 300px;
+  height: 250px;
+  flex-direction: column;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 4px 20px -3px rgba(0, 0, 0, 0.1);
+  margin: 16px 15px;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all 0.7s;
+  cursor: pointer;
+}
+
+.bear-card__container:hover {
+  box-shadow: 0 4px 20px -3px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.card-media__container {
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  position: relative;
+}
+
+.card-media__img {
+  max-width: 300px;
+  height: 167px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-body__container {
+  padding-top: 10px;
+  display: flex;
+}
+
+.card-body__left-block {
+  flex: 1;
+}
+
+.card-body__title {
+  font-size: 1.2rem;
+  color: var(--secondary);
+}
+
+/*colors */
+
+.colors__btn,
+.colors__btn:focus,
+.colors__btn:active {
+  width: 20px;
+  height: 20px;
+  margin: 5px 3px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+}
+
+.btn--selected,
+.btn--selected:focus,
+.colors__btn:active {
+  border: 4px solid var(--accent-one);
+}
+
+.btn--buy-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 2rem;
+  color: var(--accent-one);
+  z-index: 1000;
+  background-color: transparent;
 }
