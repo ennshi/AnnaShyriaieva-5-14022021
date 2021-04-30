@@ -16,7 +16,7 @@ export function renderBearCard({_id, name, imageUrl, price, colors} = defaultBea
     const {getSelectedColor, setSelectedColor} = colorSelector(colors);
     const colorsContainer = renderColors({colors, setSelectedColor, getSelectedColor, id: _id});
 
-    const buyIcon = renderBuyIcon();
+    const buyIcon = renderBuyIcon({name});
     buyIcon.addEventListener('click', (e) => {
         e.stopPropagation();
         console.log(_id, getSelectedColor())
@@ -86,8 +86,8 @@ function colorSelector(colors = ['white']) {
     return {setSelectedColor, getSelectedColor}
 }
 
-function renderBuyIcon() {
-    const buyBtn = createElement({tagName: 'button', className: 'btn--buy-icon'});
+function renderBuyIcon({name}) {
+    const buyBtn = createElement({tagName: 'button', className: 'btn--buy-icon', attributes: {'aria-label': `Ajouter l'ours ${name} au panier`}});
     const buyIcon = createElement({tagName: 'i', className: 'fas fa-shopping-cart'});
     buyBtn.appendChild(buyIcon);
     return buyBtn;
