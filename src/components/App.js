@@ -4,6 +4,7 @@ import {renderCartPage} from '../pages/cart';
 import {renderBearDetailsPage} from '../pages/bearDetails';
 import {PAGES} from '../helpers/constants';
 import {renderNavbar} from './navbar';
+import {cartService} from '../services/cartService';
 
 class App {
     constructor() {
@@ -18,6 +19,7 @@ class App {
         router.set(PAGES.BEAR_DETAILS, renderBearDetailsPage.bind(null, this.rootContainer), false);
 
         renderNavbar(this.navbarContainer);
+        cartService.displayItemsNumber();
 
         router.init();
     }

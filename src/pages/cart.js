@@ -1,6 +1,7 @@
 import {renderHeader} from '../components/header';
 import {createElement} from '../helpers/domHelper';
 import {cartService} from '../services/cartService';
+import {renderBearCartCard} from '../components/bearCartCard';
 
 export function renderCartPage(rootContainer) {
     rootContainer.innerHTML = '';
@@ -17,11 +18,12 @@ export function renderCartPage(rootContainer) {
         noItems.innerText = 'Aucun produit';
         cartContainer.append(noItems);
     } else {
+        const bearsList = createElement({tagName: 'ul', className: 'cart__list'});
         items.forEach((b, i) => {
-            const bear = createElement({tagName: 'h4', className: 'cart-item__title'});
-            bear.innerText = b.item.name;
-            cartContainer.append(bear);
-        })
+            const bear = renderBearCartCard(b);
+            bearsList.append(bear);
+        });
+        cartContainer.append(bearsList);
     }
 
     rootContainer.append(cartContainer);

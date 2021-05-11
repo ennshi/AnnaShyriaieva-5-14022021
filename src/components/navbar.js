@@ -18,9 +18,12 @@ function renderHomeBtn() {
 }
 
 function renderCartBtn() {
+    const cartBtnContainer = createElement({tagName: 'div', className: 'cart-btn__container'});
+    const cartBtnBadge = createElement({tagName: 'div', className: 'badge--cart', attributes: {id: 'cart-badge'}});
     const cartBtn = createElement({tagName: 'button', className: 'navbar__btn', attributes: {'aria-label': 'Aller au panier'}});
     const cartIcon = createElement({tagName: 'i', className: 'fas fa-shopping-cart'});
     cartBtn.appendChild(cartIcon);
     cartBtn.addEventListener('click', () => router.navigate(PAGES.CART));
-    return cartBtn;
+    cartBtnContainer.append(cartBtn, cartBtnBadge);
+    return cartBtnContainer;
 }
