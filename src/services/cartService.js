@@ -28,9 +28,10 @@ class CartService {
     removeItemFromCart({id, color, amount = 0}) {
         const items = localStorage.getItem('cart');
         const bearFromCartIdx = items.findIndex(b => (b.item.id === id && b.item.color === color));
-        const initAmount = items[bearFromCartIdx].amount;
 
         if(!id || !items.length || !~bearFromCartIdx) return;
+
+        const initAmount = items[bearFromCartIdx].amount;
 
         if(amount && (initAmount > amount)) {
             const newItems = [...items];

@@ -1,6 +1,7 @@
 import {createElement} from '../helpers/domHelper';
 import {router} from '../router/router';
 import {BEAR_COLORS, PAGES} from '../helpers/constants';
+import {cartService} from '../services/cartService';
 
 const defaultBear = {
     _id: '00',
@@ -19,7 +20,13 @@ export function renderBearCard({_id, name, imageUrl, price, colors} = defaultBea
     const buyIcon = renderBuyIcon({name});
     buyIcon.addEventListener('click', (e) => {
         e.stopPropagation();
-        console.log(_id, getSelectedColor())
+        const item = {
+            id: _id,
+            name,
+            price,
+            color: getSelectedColor()
+        };
+        cartService.addItemToCart({item});
     });
 
     cardContainer.addEventListener('click', () => router.navigate(`${PAGES.BEAR_DETAILS}?id=${_id}`));
