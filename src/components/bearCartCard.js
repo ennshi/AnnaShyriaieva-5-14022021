@@ -1,18 +1,19 @@
 import {createElement} from '../helpers/domHelper';
 import {cartService} from '../services/cartService';
+import {hideForm} from './form';
 
-export function renderBearCartCard({item, amount}) {
+export function renderBearCartCard({item, amount}, renderEmptyList) {
     const bearCartCardContainer = createElement({tagName: 'li', className: 'cart-card__container', attributes: {id: `cart-item-${item.id}-${item.color}`}});
     const bearCartCardTitle = createElement({tagName: 'h2', className: 'cart-card__title'});
     bearCartCardTitle.innerText = item.name;
     const bearCartCardColor = createElement({tagName: 'span', className: 'cart-card__color'});
     bearCartCardColor.innerText = item.color;
-    const bearAmount = amountCounter(amount, item.id, item.color);
+    const bearAmount = amountCounter(amount, item.id, item.color, renderEmptyList);
     bearCartCardContainer.append(bearCartCardTitle, bearCartCardColor, bearAmount);
     return bearCartCardContainer;
 }
 
-function amountCounter(initAmount, id, color) {
+function amountCounter(initAmount, id, color, renderEmptyList) {
     let currentAmount = initAmount;
     const amountCounterContainer = createElement({tagName: 'div', className: 'counter__container'});
     const amountCounterValue = createElement({tagName: 'span', className: 'counter__value'});
@@ -32,7 +33,14 @@ function amountCounter(initAmount, id, color) {
         currentAmount -= 1;
         if(currentAmount <= 0) {
             const item = document.getElementById(`cart-item-${id}-${color}`);
-            item.style.display = 'none';
+            const itemsList = item.parentNode;
+            const lastItem = itemsList.children.length === 1;
+            item.remove();
+            if(lastItem) {
+                itemsList.remove();
+                renderEmptyList();
+                hideForm();
+            }
             cartService.removeItemFromCart({id, color});
             return;
         }

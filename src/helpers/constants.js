@@ -16,3 +16,39 @@ export const BEAR_COLORS = {
     "Pink": 'pink',
     "Beige": '#f5f5dc'
 };
+
+export const formFields = [
+    {
+        fieldName: 'firstName',
+        label: 'Prénom',
+        type: 'text'
+    },
+    {
+        fieldName: 'lastName',
+        label: 'Nom',
+        type: 'text'
+    },
+    {
+        fieldName: 'address',
+        label: 'Adresse',
+        type: 'text'
+    },
+    {
+        fieldName: 'city',
+        label: 'Ville',
+        type: 'text'
+    },
+    {
+        fieldName: 'email',
+        label: 'E-mail',
+        type: 'email'
+    },
+];
+
+export const validators = {
+    'firstName': ['required'],
+    'lastName': ['required'],
+    'address': ['required'],
+    'city': ['required'],
+    'email': ['required'],
+}
