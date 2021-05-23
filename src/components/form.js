@@ -1,6 +1,9 @@
-import {formFields} from "../helpers/constants";
+import {formFields, PAGES} from "../helpers/constants";
 import {createElement} from "../helpers/domHelper";
 import {validateValues} from "../helpers/validation";
+import {router} from "../router/router";
+import {cartService} from "../services/cartService";
+import {orderService} from "../services/orderService";
 
 export function renderForm() {
   const form = createElement({tagName: 'div', className: 'form__container', attributes: {id: 'form'}});
@@ -17,8 +20,13 @@ export function renderForm() {
     if(errors) {
       updateFormFields(values, errors);
     } else {
-      //send data
       console.log('Sent', values)
+      orderService.sendOrder(values)
+      .then((res) => {
+        const total = cartService.getTotalPrice();
+        router.navigate(`${PAGES.ORDER_SUCCESS}?total=${total}&id=${res.orderId}`);
+      })
+      .catch(e => console.log(e));
     }
   })
   form.append(fieldsList, submitBtn);

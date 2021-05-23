@@ -1,7 +1,8 @@
 export const PAGES = {
     INDEX: '#',
     CART: '#panier',
-    BEAR_DETAILS: '#ours'
+    BEAR_DETAILS: '#ours',
+    ORDER_SUCCESS: '#succes',
 };
 
 export const BEAR_COLORS = {
@@ -26,7 +27,7 @@ export const formFields = [
             required: true,
             min: 2,
             max: 20,
-            pattern: /w+/
+            pattern: /^[a-zA-Z]+$/
         }
     },
     {
@@ -37,7 +38,7 @@ export const formFields = [
             required: true,
             min: 2,
             max: 20,
-            pattern: /w+/
+            pattern: /^[a-zA-Z]+$/
         }
     },
     {

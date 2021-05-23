@@ -56,6 +56,12 @@ class CartService {
         localStorage.setItem('cart', JSON.stringify(newItems));
         this.displayItemsNumber(items.length - 1);
     }
+
+    getTotalPrice() {
+        const items = this.getItemsFromCart();
+        if(!items) return 0;
+        return items.reduce((acc, {amount, item}) => acc + item.price * amount, 0); 
+    }
 }
 
 export const cartService = new CartService();
