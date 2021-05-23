@@ -1,15 +1,15 @@
 :root {
-  --primary: #F3EAF3;
-  --secondary: #452B32;
-  --accent-one: #A468BC;
+  --primary: #f3eaf3;
+  --secondary: #452b32;
+  --accent-one: #a468bc;
   --accent-one-light: #c9a4e7;
-  --accent-two: #847C84;
+  --accent-two: #847c84;
   --accent-three: #ffd3ee;
 }
 
 html,
 body {
-  font-family: 'Verdana', sans-serif;
+  font-family: "Verdana", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -19,8 +19,16 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background: var(--accent-one-light);
-  background: -webkit-linear-gradient(0deg, var(--accent-one-light) 0%, var(--primary) 80%);
-  background: linear-gradient(0deg, var(--accent-one-light) 0%, var(--primary) 80%);
+  background: -webkit-linear-gradient(
+    0deg,
+    var(--accent-one-light) 0%,
+    var(--primary) 80%
+  );
+  background: linear-gradient(
+    0deg,
+    var(--accent-one-light) 0%,
+    var(--primary) 80%
+  );
 }
 
 * {
@@ -50,6 +58,18 @@ button:focus {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+input {
+  border: none;
+  border-radius: 8px;
+  padding: 7px;
+  transition: all 0.7s;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 4px 20px -3px rgba(0, 0, 0, 0.2);
 }
 
 /* navigation */
@@ -268,3 +288,43 @@ button:focus {
   font-size: 0.8rem;
 }
 
+/* form */
+
+.form__container {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.form__inner-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__field-container {
+  width: 100%;
+  padding: 8px 0;
+}
+
+.form__field {
+  display: flex;
+}
+
+.form__field-container label,
+.form__field-container input {
+  flex: 1;
+}
+
+.form__submit-btn {
+  margin: 20px auto;
+}
+
+.form__error {
+  width: 100%;
+  font-size: 0.7rem;
+  display: inline-block;
+  color: var(--accent-one);
+  padding-right: 5px;
+  text-align: right;
+}

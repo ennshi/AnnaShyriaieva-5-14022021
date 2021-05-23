@@ -20,7 +20,6 @@ class Router {
     }
 
     /**
-     * @method Router#init
      * @returns {void}
      */
     init() {
@@ -33,10 +32,9 @@ class Router {
     }
 
     /**
-     * @method Router#set
-     * @param {string} hash
+     * @param {String} hash
      * @param {Function} cb
-     * @param {boolean} defaultRoute
+     * @param {Boolean} defaultRoute
      * @returns {void}
      */
     set(hash, cb, defaultRoute) {
@@ -45,8 +43,7 @@ class Router {
     }
 
     /**
-     * @method Router#navigate
-     * @param {string} hashWithQuery
+     * @param {String} hashWithQuery
      * @returns {void}
      */
     navigate(hashWithQuery) {
@@ -60,7 +57,6 @@ class Router {
     }
 
     /**
-     * @method Router#replaceWithDefaultRoute
      * @returns {void}
      */
     replaceWithDefaultRoute() {

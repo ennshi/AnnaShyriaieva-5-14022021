@@ -1,8 +1,9 @@
-import {formFields, validators} from "../helpers/constants";
+import {formFields} from "../helpers/constants";
 import {createElement} from "../helpers/domHelper";
+import {validateValues} from "../helpers/validation";
 
 export function renderForm() {
-  const form = createElement({tagName: 'form', class: 'form__container', attributes: {id: 'form'}});
+  const form = createElement({tagName: 'div', className: 'form__container', attributes: {id: 'form'}});
   const fieldsList = createElement({tagName: 'div', className: 'form__inner-container', attributes: {id: 'formFields'}});
   fieldsList.innerHTML = renderFields();
   const submitBtn = createElement({tagName: 'button', className: 'form__submit-btn'});
@@ -33,41 +34,15 @@ function renderFields(values, errors) {
     };
     return (
       `<div class="form__field-container">
-        <label>${f.label}</label>
-        <input type="${f.type}" value="${values && values[f.fieldName] || ''}" id="${f.fieldName}"/>
+        <div class="form__field">
+          <label>${f.label}</label>
+          <input type="${f.type}" value="${values && values[f.fieldName] || ''}" id="${f.fieldName}"/>
+        </div>
         ${getError()}
       </div>`
     );
   }).join('');
   return fields;
-}
-
-function validateValues(values) {
-  const errors = {};
-  for(let val in values) {
-    if(!values.hasOwnProperty(val) || !validators[val]) return;
-    const fieldLabel = formFields.find(f => f.fieldName === val).label || '';
-    const errorsVal = [];
-    validators[val].forEach(validator => {
-      switch (validator) {
-        case 'required':
-          emptyValue(values[val]) && errorsVal.push(`${fieldLabel} est obligatoire`);
-          break;
-      }
-    });
-    if(errorsVal.length) {
-      errors[val] = errorsVal;
-    }
-  }
-  if(Object.keys(errors).length) {
-    return errors;
-  }
-  return null;
-}
-
-function emptyValue (val) {
-  console.log(val)
-  if(typeof val === 'string') return !val.trim();
 }
 
 export function updateFormFields(values, errors) {
