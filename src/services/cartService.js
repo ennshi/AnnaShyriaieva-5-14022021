@@ -65,6 +65,7 @@ class CartService {
 
     clearCart() {
         localStorage.removeItem('cart');
+        this.displayItemsNumber();
     }
 }
 
