@@ -62,6 +62,10 @@ class CartService {
         if(!items) return 0;
         return items.reduce((acc, {amount, item}) => acc + item.price * amount, 0); 
     }
+
+    clearCart() {
+        localStorage.removeItem('cart');
+    }
 }
 
 export const cartService = new CartService();

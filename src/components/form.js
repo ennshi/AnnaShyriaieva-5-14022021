@@ -24,6 +24,7 @@ export function renderForm() {
       orderService.sendOrder(values)
       .then((res) => {
         const total = cartService.getTotalPrice();
+        cartService.clearCart();
         router.navigate(`${PAGES.ORDER_SUCCESS}?total=${total}&id=${res.orderId}`);
       })
       .catch(e => console.log(e));
