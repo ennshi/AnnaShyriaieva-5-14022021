@@ -10,7 +10,7 @@ export function renderBearCartCard({item, amount}, renderEmptyList) {
     const bearCartCardColor = createElement({tagName: 'span', className: 'cart-card__color'});
     bearCartCardColor.innerText = item.color;
     const bearCartCardPrix = createElement({tagName: 'span', className: 'cart-card__color', attributes: {id: `cart-item-prix-${item.id}-${item.color}`}});
-    bearCartCardPrix.innerText = item.price * amount;
+    bearCartCardPrix.innerText = item.price * amount + '¥';
     const bearAmount = amountCounter({amount, item}, renderEmptyList);
     bearCartCardContainer.append(bearCartCardTitle, bearCartCardColor, bearCartCardPrix, bearAmount);
     return bearCartCardContainer;
@@ -61,10 +61,10 @@ function amountCounter({amount: initAmount, item: {id, color, price}}, renderEmp
     };
 
     const incrBtn = createElement({tagName: 'button', className: 'btn--counter'});
-    incrBtn.innerText = '+';
+    incrBtn.innerHTML = '<span>+</span>';
     incrBtn.addEventListener('click', incrementCurrentAmount);
     const decrBtn = createElement({tagName: 'button', className: 'btn--counter'});
-    decrBtn.innerText = '-';
+    decrBtn.innerHTML = '<span>-</span>';
     decrBtn.addEventListener('click', decrementCurrentAmount);
     amountCounterContainer.append(incrBtn, amountCounterValue, decrBtn);
     return amountCounterContainer;

@@ -5,10 +5,10 @@ import {router} from "../router/router";
 export function renderOrderSuccess ({total, orderId}) {
   const orderSuccessContainer = createElement({tagName: 'section', className: 'order-success__container'});
   orderSuccessContainer.innerHTML = `
-    <h1>Merci pour votre commande ${orderId}</h1>
-    <p>Le prix total: ${total}</p>
+    <h1 class="header">Merci pour votre commande : ${orderId}</h1>
+    <p>Le prix total: ${total}¥</p>
   `;
-  const btnBack = createElement({tagName: 'button', className: 'btn'});
+  const btnBack = createElement({tagName: 'button', className: 'btn--basic'});
   btnBack.innerText = 'Retour à l\'accueil';
   btnBack.addEventListener('click', () => {
     router.navigate(PAGES.INDEX);

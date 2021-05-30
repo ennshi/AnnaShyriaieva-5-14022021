@@ -42,7 +42,7 @@ function renderBearDetailsInfo({price, description, name, colors, _id}) {
 
     const bearDetailsBuyBlock = createElement({tagName: 'div', className: 'bear-details__buy-block'});
     const bearDetailsPrice = createElement({tagName: 'span', className: 'bear-details__price'});
-    bearDetailsPrice.innerText = price;
+    bearDetailsPrice.innerText = price + '¥';
 
     const buyIcon = renderBtnAddToCart({name});
     buyIcon.addEventListener('click', () => {
@@ -59,23 +59,25 @@ function renderBearDetailsInfo({price, description, name, colors, _id}) {
     const bearDetailsDescription = createElement({tagName: 'div', className: 'bear-details__desc'});
     bearDetailsDescription.innerText = description;
 
-    bearDetailsInfoContainer.append(description, colorsSelectInput, bearDetailsBuyBlock);
+    bearDetailsInfoContainer.append(bearDetailsDescription, colorsSelectInput, bearDetailsBuyBlock);
 
     return bearDetailsInfoContainer;
 }
 
 function renderSelectColorInput(colors) {
-    const selectColors = createElement({tagName: 'select', className: 'bear-details__select'});
+    const selectColors = createElement({tagName: 'div', className: 'bear-details__select'});
+    const selector = createElement({tagName: 'select'});
     colors.forEach(c => {
         const optionColor = createElement({tagName: 'option', attributes: {value: c}});
         optionColor.innerText = c;
-        selectColors.append(optionColor);
+        selector.append(optionColor);
     });
+    selectColors.append(selector);
     return selectColors;
 }
 
 function renderBtnAddToCart() {
-    const buyBtn = createElement({tagName: 'button', className: 'btn' });
+    const buyBtn = createElement({tagName: 'button', className: 'btn--basic'});
     buyBtn.innerText = 'Ajouter au panier';
     return buyBtn;
 }

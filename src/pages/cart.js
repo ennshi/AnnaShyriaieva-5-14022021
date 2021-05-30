@@ -3,6 +3,8 @@ import {createElement} from '../helpers/domHelper';
 import {cartService} from '../services/cartService';
 import {renderBearCartCard} from '../components/bearCartCard';
 import {renderForm} from '../components/form';
+import {router} from '../router/router';
+import {PAGES} from '../helpers/constants';
 
 /**
  * @param {HTMLElement} rootContainer
@@ -19,19 +21,26 @@ export function renderCartPage(rootContainer) {
     const items = cartService.getItemsFromCart();
 
     const renderEmptyList = () => {
-        const noItems = createElement({tagName: 'h2', className: 'cart__subtitle'});
-        noItems.innerText = 'Aucun produit';
-        cartContainer.append(noItems);
+        const emptyContainer = createElement({tagName: 'div', className: 'cart__empty-state'});
+        emptyContainer.innerHTML = `
+            <h2 class="cart__subtitle">Aucun produit...</h2>
+        `
+        const buttonShop = createElement({tagName: 'button', className: 'btn--basic'});
+        buttonShop.innerText = 'Voir nos ours';
+        buttonShop.addEventListener('click', () => router.navigate(PAGES.INDEX));
+
+        emptyContainer.append(buttonShop);
+        cartContainer.append(emptyContainer);
     }
 
     if(!items.length) {
         renderEmptyList();
     } else {
         const bearsList = createElement({tagName: 'ul', className: 'cart__list'});
-        const total = createElement({tagName: 'li'});
+        const total = createElement({tagName: 'li', className: 'cart-card__container'});
         const totalPriceEl = `
-        <span>Prix Total:</span>
-        <span id="totalPrice">${cartService.getTotalPrice()}</span>
+        <span><span class="cart-card__total-price">Prix total:</span>
+        <span id="totalPrice" class="cart-card__title">${cartService.getTotalPrice()}¥</span></span>
         `;
         
         items.forEach((b, i) => {

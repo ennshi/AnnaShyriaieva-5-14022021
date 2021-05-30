@@ -47,7 +47,7 @@ function renderCardBody({name, price}) {
     cardName.innerText = name;
 
     const cardPrice = createElement({tagName: 'span', className: 'card-body__price'});
-    cardPrice.innerText = price;
+    cardPrice.innerText = price + '¥';
 
     cardBodyRightBlock.append(cardPrice);
     cardBodyLeftBlock.append(cardName);

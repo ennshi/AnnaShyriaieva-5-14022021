@@ -9,7 +9,8 @@ export function renderForm() {
   const form = createElement({tagName: 'div', className: 'form__container', attributes: {id: 'form'}});
   const fieldsList = createElement({tagName: 'div', className: 'form__inner-container', attributes: {id: 'formFields'}});
   fieldsList.innerHTML = renderFields();
-  const submitBtn = createElement({tagName: 'button', className: 'form__submit-btn'});
+  const submitBtnContainer = createElement({tagName: 'div', className: 'form__btn-container'});
+  const submitBtn = createElement({tagName: 'button', className: 'btn--basic'});
   submitBtn.innerText = 'Commander';
   submitBtn.addEventListener('click', () => {
     const values = formFields.reduce((acc, {fieldName}) => {
@@ -20,7 +21,6 @@ export function renderForm() {
     if(errors) {
       updateFormFields(values, errors);
     } else {
-      console.log('Sent', values)
       orderService.sendOrder(values)
       .then((res) => {
         const total = cartService.getTotalPrice();
@@ -30,7 +30,8 @@ export function renderForm() {
       .catch(e => console.log(e));
     }
   })
-  form.append(fieldsList, submitBtn);
+  submitBtnContainer.append(submitBtn);
+  form.append(fieldsList, submitBtnContainer);
   return form;
 }
 

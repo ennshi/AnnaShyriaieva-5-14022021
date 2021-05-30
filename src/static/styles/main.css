@@ -51,6 +51,7 @@ a:hover {
 
 ul {
   padding: 0;
+  list-style: none;
 }
 
 button,
@@ -132,10 +133,10 @@ input:focus {
 
 .bear-list__container {
   margin-top: 30px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-content: space-evenly;
+  grid-gap: 20px;
 }
 
 .bear-card__container {
@@ -187,7 +188,67 @@ input:focus {
   color: var(--secondary);
 }
 
-/*colors */
+.card-body__price {
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* button */
+
+.btn--basic {
+  border-radius: 16px;
+  background-color: var(--accent-one);
+  padding: 12px 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.8s;
+  box-shadow: 0px 4px 20px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn--basic:hover {
+  box-shadow: 0 4px 20px -3px rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+}
+
+.btn--counter {
+  color: var(--secondary);
+  background-color: white;
+  border-radius: 16px;
+  display: grid;
+  align-items: center;
+  margin: 6px;
+  font-size: 1rem;
+  line-height: 1rem;
+  box-shadow: 0px 4px 20px -3px rgba(0, 0, 0, 0.1);
+  min-width: 25px;
+  height: 30px;
+}
+
+.btn--counter:hover {
+  box-shadow: 0 4px 20px -3px rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+}
+
+/* select */
+
+select {
+  width: fit-content;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0px 4px 20px -3px rgba(0, 0, 0, 0.1);
+  color: var(--secondary);
+  padding: 10px 10px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+select:hover {
+  box-shadow: 0 4px 20px -3px rgba(0, 0, 0, 0.2);
+}
+
+/*colors selector*/
 
 .colors__btn,
 .colors__btn:focus,
@@ -256,10 +317,38 @@ input:focus {
   max-width: calc(100% - 36px);
 }
 
+.bear-details__buy-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bear-details__price {
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 /* cart */
+.cart__subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--secondary);
+  margin-top: 70px;
+}
+
 .cart__section {
   margin: 0 auto;
   max-width: 400px;
+}
+
+.cart__empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .cart__list {
@@ -272,20 +361,46 @@ input:focus {
 
 .cart-card__container {
   display: flex;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  margin: 10px;
+  margin: 15px;
+}
+
+.cart-card__container:last-child {
+  margin-top: 25px;
 }
 
 .cart-card__title {
   flex: 1;
+  min-width: 100px;
   font-size: 1rem;
   color: var(--secondary);
+  font-weight: bold;
 }
 
 .cart-card__color {
   flex: 1;
+  min-width: 70px;
   font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.cart-card__total-price {
+  margin-right: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+/* counter */
+
+.counter__container {
+  flex-wrap: nowrap;
+  min-width: 70px;
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 /* form */
@@ -327,4 +442,58 @@ input:focus {
   color: var(--accent-one);
   padding-right: 5px;
   text-align: right;
+}
+
+.form__btn-container {
+  margin-top: 35px;
+  margin-bottom: 40px;
+}
+
+/* order success */
+
+.order-success__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  word-wrap: break-word;
+  margin: 70px auto;
+}
+
+@media screen and (max-width: 300px) {
+  .bear-details__img-container,
+  .bear-details__info-container {
+    min-width: 100%;
+  }
+
+  .cart-card__container {
+    margin: 30px 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .bear-details__container {
+    max-width: 420px;
+  }
+
+  .bear-details__img-container {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .bear-details__desc,
+  .bear-details__buy-block {
+    margin-bottom: 30px;
+    min-width: 100%;
+  }
+
+  .bear-details__buy-block button,
+  .bear-details__buy-block span {
+    margin-top: 30px;
+  }
+
+  .bear-details__info-container {
+    padding: 0 8px;
+  }
 }
