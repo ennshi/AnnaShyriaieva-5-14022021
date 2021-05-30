@@ -17,6 +17,7 @@ export function renderCartPage(rootContainer) {
 
 
     const items = cartService.getItemsFromCart();
+
     const renderEmptyList = () => {
         const noItems = createElement({tagName: 'h2', className: 'cart__subtitle'});
         noItems.innerText = 'Aucun produit';
@@ -27,12 +28,28 @@ export function renderCartPage(rootContainer) {
         renderEmptyList();
     } else {
         const bearsList = createElement({tagName: 'ul', className: 'cart__list'});
+        const total = createElement({tagName: 'li'});
+        const totalPriceEl = `
+        <span>Prix Total:</span>
+        <span id="totalPrice">${cartService.getTotalPrice()}</span>
+        `;
+        
         items.forEach((b, i) => {
             const bear = renderBearCartCard(b, renderEmptyList);
             bearsList.append(bear);
         });
+
+        total.innerHTML = totalPriceEl;
+        bearsList.append(total);
+    
         cartContainer.append(bearsList, renderForm());
     }
 
     rootContainer.append(cartContainer);
+}
+
+export function updateTotalPrice() {
+    const totalPriceElement = document.getElementById('totalPrice');
+    if(!totalPriceElement) return;
+    totalPriceElement.innerText = cartService.getTotalPrice();
 }

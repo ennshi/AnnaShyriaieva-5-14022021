@@ -1,5 +1,6 @@
 import {createElement} from '../helpers/domHelper';
 import {cartService} from '../services/cartService';
+import {updateTotalPrice} from '../pages/cart';
 import {hideForm} from './form';
 
 export function renderBearCartCard({item, amount}, renderEmptyList) {
@@ -8,12 +9,19 @@ export function renderBearCartCard({item, amount}, renderEmptyList) {
     bearCartCardTitle.innerText = item.name;
     const bearCartCardColor = createElement({tagName: 'span', className: 'cart-card__color'});
     bearCartCardColor.innerText = item.color;
-    const bearAmount = amountCounter(amount, item.id, item.color, renderEmptyList);
-    bearCartCardContainer.append(bearCartCardTitle, bearCartCardColor, bearAmount);
+    const bearCartCardPrix = createElement({tagName: 'span', className: 'cart-card__color', attributes: {id: `cart-item-prix-${item.id}-${item.color}`}});
+    bearCartCardPrix.innerText = item.price * amount;
+    const bearAmount = amountCounter({amount, item}, renderEmptyList);
+    bearCartCardContainer.append(bearCartCardTitle, bearCartCardColor, bearCartCardPrix, bearAmount);
     return bearCartCardContainer;
 }
 
-function amountCounter(initAmount, id, color, renderEmptyList) {
+function updatePrice ({elId, price, amount}) {
+    const priceElement = document.getElementById(elId);
+    priceElement.innerText = price * amount;
+}
+
+function amountCounter({amount: initAmount, item: {id, color, price}}, renderEmptyList) {
     let currentAmount = initAmount;
     const amountCounterContainer = createElement({tagName: 'div', className: 'counter__container'});
     const amountCounterValue = createElement({tagName: 'span', className: 'counter__value'});
@@ -26,6 +34,8 @@ function amountCounter(initAmount, id, color, renderEmptyList) {
     const incrementCurrentAmount = () => {
         currentAmount += 1;
         cartService.addItemToCart({item: {id, color}});
+        updatePrice({elId: `cart-item-prix-${id}-${color}`, price, amount: currentAmount});
+        updateTotalPrice();
         displayAmount();
     };
 
@@ -34,7 +44,7 @@ function amountCounter(initAmount, id, color, renderEmptyList) {
         if(currentAmount <= 0) {
             const item = document.getElementById(`cart-item-${id}-${color}`);
             const itemsList = item.parentNode;
-            const lastItem = itemsList.children.length === 1;
+            const lastItem = itemsList.children.length === 2;
             item.remove();
             if(lastItem) {
                 itemsList.remove();
@@ -45,6 +55,8 @@ function amountCounter(initAmount, id, color, renderEmptyList) {
             return;
         }
         cartService.removeItemFromCart({id, color, amount: 1});
+        updatePrice({elId: `cart-item-prix-${id}-${color}`, price, amount: currentAmount});
+        updateTotalPrice();
         displayAmount();
     };
 
