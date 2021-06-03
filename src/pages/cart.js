@@ -66,5 +66,5 @@ export function renderCartPage(rootContainer) {
 export function updateTotalPrice() {
     const totalPriceElement = document.getElementById('totalPrice');
     if(!totalPriceElement) return;
-    totalPriceElement.innerText = cartService.getTotalPrice();
+    totalPriceElement.innerText = cartService.getTotalPrice() + '¥';
 }

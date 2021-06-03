@@ -24,7 +24,7 @@ export function renderBearDetailsView(bear) {
 
 function renderBearDetailsContainer(bear) {
     const bearSelectedViewContainer = createElement({tagName: 'section', className: 'bear-details__container'});
-    const bearImg = renderBearDetailsImage({url: bear.imageUrl, name: bear.name});
+    const bearImg = renderBearDetailsImage({imageUrl: bear.imageUrl, name: bear.name});
     const bearInfo = renderBearDetailsInfo(bear);
 
     bearSelectedViewContainer.append(bearImg, bearInfo);
