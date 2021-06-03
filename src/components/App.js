@@ -7,13 +7,26 @@ import {renderNavbar} from './navbar';
 import {cartService} from '../services/cartService';
 import {renderSuccessPage} from '../pages/orderSuccess';
 
+/**
+ * Main class
+ * @name App
+ * @class
+ */
 class App {
+    /**
+     * Set root and navbar container, call the start the application
+     * @constructor
+     */
     constructor() {
         this.rootContainer = document.getElementById('main');
         this.navbarContainer = document.getElementById('navbar');
         this.start();
     }
 
+    /**
+     * Method to set routes, call render of navbar and index page
+     * @returns {void}
+     */
     start() {
         router.set('', renderHomePage.bind(null, this.rootContainer), true);
         router.set(PAGES.CART, renderCartPage.bind(null, this.rootContainer), false);

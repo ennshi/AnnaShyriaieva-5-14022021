@@ -2,6 +2,7 @@ import {bearsService} from '../services/bearsService';
 import {renderBearList} from '../components/bearList';
 
 /**
+ * Render Home page
  * @param {HTMLElement} rootContainer
  * @returns {void}
  */

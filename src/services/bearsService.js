@@ -1,6 +1,15 @@
 import {callApi} from '../helpers/apiHelper';
 
+/**
+ * BearsService class
+ * @name BearsService
+ * @class
+ */
 class BearsService {
+    /**
+     * Get all bears from the session storage or from the server
+     * @returns {Promise<Bear[]>}
+     */
     async getAllBears() {
         const sessionBears = this.getAllBearsFromSessionStorage();
         if(sessionBears) return sessionBears;
@@ -15,6 +24,12 @@ class BearsService {
         }
     }
 
+    /**
+     * Get a bear from the session storage or from the server by its id
+     * @param {Number} id bear's id
+     * @returns {Promise<Bear> | Bear}
+     */
+
     async getBearById(id) {
         if(!id) return;
 
@@ -28,6 +43,11 @@ class BearsService {
             throw e;
         }
     }
+
+    /**
+     * Get all bears from the session storage
+     * @returns {Bear[]}
+     */
 
     getAllBearsFromSessionStorage() {
         const bears = sessionStorage.getItem('bears');

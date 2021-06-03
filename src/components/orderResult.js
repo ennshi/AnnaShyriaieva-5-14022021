@@ -2,6 +2,12 @@ import {PAGES} from "../helpers/constants";
 import {createElement} from "../helpers/domHelper";
 import {router} from "../router/router";
 
+/**
+ * Render an order success section
+ * @param {OrderSuccessData} orderSuccessData
+ * @returns {HTMLElement} order success container
+ */
+
 export function renderOrderSuccess ({total, orderId}) {
   const orderSuccessContainer = createElement({tagName: 'section', className: 'order-success__container'});
   orderSuccessContainer.innerHTML = `

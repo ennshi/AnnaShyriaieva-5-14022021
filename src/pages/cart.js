@@ -7,9 +7,11 @@ import {router} from '../router/router';
 import {PAGES} from '../helpers/constants';
 
 /**
+ * Render Cart page
  * @param {HTMLElement} rootContainer
  * @returns {void}
  */
+
 export function renderCartPage(rootContainer) {
     rootContainer.innerHTML = '';
 
@@ -56,6 +58,10 @@ export function renderCartPage(rootContainer) {
 
     rootContainer.append(cartContainer);
 }
+
+/**
+ * @returns {void}
+ */
 
 export function updateTotalPrice() {
     const totalPriceElement = document.getElementById('totalPrice');

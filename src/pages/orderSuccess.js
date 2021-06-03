@@ -1,5 +1,12 @@
 import {renderOrderSuccess} from "../components/orderResult";
 
+/**
+ * Render Order Success page
+ * @param {HTMLElement} rootContainer
+ * @param {OrderSuccessQueryData} orderSuccessQueryData
+ * @returns {void}
+ */
+
 export function renderSuccessPage (rootContainer, {total, id}) {
   rootContainer.innerHTML = '';
 

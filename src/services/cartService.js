@@ -1,4 +1,14 @@
+/**
+ * CartService class
+ * @name CartService
+ * @class
+ */
 class CartService {
+    /**
+     * Display cart items number on the cat badge
+     * @param {Number | undefined} number number of items
+     * @returns {void}
+     */
     displayItemsNumber(number) {
         const badge = document.getElementById('cart-badge');
         if(number) {
@@ -9,11 +19,22 @@ class CartService {
         badge.innerText = `${items.length}`;
     }
 
+    /**
+     * Get all items from cart
+     * @returns {CartItem[]} cart items list
+     */
+
     getItemsFromCart() {
         const cartItems = localStorage.getItem('cart');
         if(!cartItems) return [];
         return JSON.parse(cartItems);
     }
+
+    /**
+     * Add an item to the cart
+     * @param {CartItem} cartItem cart item
+     * @returns {void}
+     */
 
     addItemToCart({item, amount = 1}) {
         if(!item) return;
@@ -37,7 +58,15 @@ class CartService {
         localStorage.setItem('cart', JSON.stringify(newItems));
     }
 
-    removeItemFromCart({id, color, amount = 0}) {
+    /**
+     * Remove an item from the cart
+     * @param {Number} id item id
+     * @param {String} color item color
+     * @param {Number} amount item number
+     * @returns {void}
+     */
+
+    removeItemFromCart(id, color, amount = 0) {
         const items = this.getItemsFromCart();
         const bearFromCartIdx = items.findIndex(b => (b.item.id === id && b.item.color === color));
 
@@ -57,11 +86,21 @@ class CartService {
         this.displayItemsNumber(items.length - 1);
     }
 
+    /**
+     * Get the total price
+     * @returns {Number} total price
+     */
+
     getTotalPrice() {
         const items = this.getItemsFromCart();
         if(!items) return 0;
         return items.reduce((acc, {amount, item}) => acc + item.price * amount, 0); 
     }
+
+    /**
+     * Clear the cart
+     * @returns {void}
+     */
 
     clearCart() {
         localStorage.removeItem('cart');

@@ -2,6 +2,12 @@ import {cartService} from "./cartService";
 import {callApi} from "../helpers/apiHelper";
 
 class OrderService {
+
+  /**
+   * Send an order
+   * @param {{[String]: String | undefined}} values form values
+   * @returns {Promise<SendOrderResponse> | undefined}
+   */
   async sendOrder(values) {
     const cartItems = cartService.getItemsFromCart();
     if(!values || !cartItems) return;

@@ -5,20 +5,15 @@ import {PAGES} from '../helpers/constants';
 
 
 /**
- * @typedef {Object} bear
- * @property {String}  id  the bear's ID
- * @property {Number}  [price] 
- */
-
-
-/**
+ * Render Bear Details page
  * @param {HTMLElement} rootContainer
- * @param {bear} bear
+ * @param {Bear} bear
  * @returns {void}
  */
-export async function renderBearDetailsPage(rootContainer, { id }) {
+
+export async function renderBearDetailsPage(rootContainer, { _id }) {
     try {
-        const bear = await bearsService.getBearById(id);
+        const bear = await bearsService.getBearById(_id);
         if(bear._id) {
             rootContainer.innerHTML = '';
             rootContainer.appendChild(renderBearDetailsView(bear));

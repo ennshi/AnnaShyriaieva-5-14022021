@@ -8,11 +8,13 @@ const DEFAULT_ROUTE = {
 };
 
 /**
+ * Router class
  * @name Router
  * @class
  */
 class Router {
     /**
+     * Routes list
      * @constructor
      */
     constructor() {
@@ -20,6 +22,7 @@ class Router {
     }
 
     /**
+     * Initiate router by adding listeners
      * @returns {void}
      */
     init() {
@@ -32,9 +35,10 @@ class Router {
     }
 
     /**
+     * Set a route
      * @param {String} hash
-     * @param {Function} cb
-     * @param {Boolean} defaultRoute
+     * @param {Function} cb callback
+     * @param {Boolean} defaultRoute is default route
      * @returns {void}
      */
     set(hash, cb, defaultRoute) {
@@ -43,6 +47,7 @@ class Router {
     }
 
     /**
+     * Navigate to route
      * @param {String} hashWithQuery
      * @returns {void}
      */
@@ -57,6 +62,7 @@ class Router {
     }
 
     /**
+     * Redirect to the default route
      * @returns {void}
      */
     replaceWithDefaultRoute() {
