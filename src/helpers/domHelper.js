@@ -3,7 +3,6 @@
  * @param {DOMElementData} domElementData
  * @returns {HTMLElement} HTML element
  */
-
 export function createElement({ tagName, className, attributes = {} }) {
     const element = document.createElement(tagName);
 

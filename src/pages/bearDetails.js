@@ -10,7 +10,6 @@ import {PAGES} from '../helpers/constants';
  * @param {Bear} bear
  * @returns {void}
  */
-
 export async function renderBearDetailsPage(rootContainer, { _id }) {
     try {
         const bear = await bearsService.getBearById(_id);

@@ -7,7 +7,6 @@ import {cartService} from '../services/cartService';
  * @param {Bear} bear
  * @returns {HTMLElement} bearSelectedViewSection
  */
-
 export function renderBearDetailsView(bear) {
     const bearSelectedViewSection = createElement({tagName: 'section', className: 'bear-details__section'});
     const header = renderHeader(`Ours ${bear.name}`);
@@ -21,7 +20,6 @@ export function renderBearDetailsView(bear) {
  * @param {Bear} bear
  * @returns {HTMLElement} bearSelectedViewContainer
  */
-
 function renderBearDetailsContainer(bear) {
     const bearSelectedViewContainer = createElement({tagName: 'section', className: 'bear-details__container'});
     const bearImg = renderBearDetailsImage({imageUrl: bear.imageUrl, name: bear.name});
@@ -36,7 +34,6 @@ function renderBearDetailsContainer(bear) {
  * @param {Bear} bear
  * @returns {HTMLElement} bear's image
  */
-
 function renderBearDetailsImage({imageUrl, name}) {
     const imgContainer = createElement({tagName: 'div', className: 'bear-details__img-container'});
     const bearImg = createElement({tagName: 'img', className: 'bear-details__img', attributes: {alt: `Ours ${name}`, src: imageUrl}});
@@ -49,7 +46,6 @@ function renderBearDetailsImage({imageUrl, name}) {
  * @param {Bear} bear
  * @returns {HTMLElement} bearDetailsInfoContainer
  */
-
 function renderBearDetailsInfo({price, description, name, colors, _id}) {
     const bearDetailsInfoContainer = createElement({tagName: 'div', className: 'bear-details__info-container'});
 
@@ -65,7 +61,7 @@ function renderBearDetailsInfo({price, description, name, colors, _id}) {
             id: _id,
             name,
             price,
-            color: colorsSelectInput.value
+            color: colorsSelectInput.children[0].value
         };
         cartService.addItemToCart({item});
     });
@@ -84,7 +80,6 @@ function renderBearDetailsInfo({price, description, name, colors, _id}) {
  * @param {String[]} colors
  * @returns {HTMLElement} colors select element
  */
-
 function renderSelectColorInput(colors) {
     const selectColors = createElement({tagName: 'div', className: 'bear-details__select'});
     const selector = createElement({tagName: 'select'});
@@ -101,7 +96,6 @@ function renderSelectColorInput(colors) {
  * * Render a bear's details button Add to cart
  * @returns {HTMLElement} buy button element
  */
-
 function renderBtnAddToCart() {
     const buyBtn = createElement({tagName: 'button', className: 'btn--basic'});
     buyBtn.innerText = 'Ajouter au panier';

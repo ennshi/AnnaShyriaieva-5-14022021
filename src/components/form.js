@@ -9,7 +9,6 @@ import {orderService} from "../services/orderService";
  * Render the form
  * @returns {HTMLElement} form
  */
-
 export function renderForm() {
   const form = createElement({tagName: 'div', className: 'form__container', attributes: {id: 'form'}});
   const fieldsList = createElement({tagName: 'div', className: 'form__inner-container', attributes: {id: 'formFields'}});
@@ -42,11 +41,10 @@ export function renderForm() {
 
 /**
  * Render the form fields
- * @param {Contacts | undefined} values
- * @param {Contacts | undefined} errors
+ * @param {Contacts} [values]
+ * @param {Contacts} [errors]
  * @returns {String} fields HTML string
  */
-
 function renderFields(values, errors) {
   const fields = formFields.map((f) => {
     const getError = () => {
@@ -69,11 +67,10 @@ function renderFields(values, errors) {
 
 /**
  * Update the form fields with values and errors
- * @param {Contacts} values
- * @param {Contacts | undefined} errors
+ * @param {Contacts} [values]
+ * @param {Contacts} [errors]
  * @returns {void}
  */
-
 export function updateFormFields(values, errors) {
   const formFields = document.getElementById('formFields');
   formFields.innerHTML = renderFields(values, errors);
@@ -83,7 +80,6 @@ export function updateFormFields(values, errors) {
  * Hide the form
  * @returns {void}
  */
-
 export function hideForm() {
   const form = document.getElementById('form');
   form.style.display = 'none';

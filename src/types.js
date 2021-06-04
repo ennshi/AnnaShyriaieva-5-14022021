@@ -56,11 +56,11 @@
 
 /**
  * @typedef {Object} Contacts
- * @property {String | undefined} firstName user first name
- * @property {String | undefined} lastName user last name
- * @property {String | undefined} address user address
- * @property {String | undefined} city user city
- * @property {String | undefined} email user email
+ * @property {String} [firstName] user first name
+ * @property {String} [lastName] user last name
+ * @property {String} [address] user address
+ * @property {String} [city] user city
+ * @property {String} [email] user email
  */
 
 /**

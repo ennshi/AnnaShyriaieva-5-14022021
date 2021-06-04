@@ -7,7 +7,6 @@ import {router} from "../router/router";
  * @param {OrderSuccessData} orderSuccessData
  * @returns {HTMLElement} order success container
  */
-
 export function renderOrderSuccess ({total, orderId}) {
   const orderSuccessContainer = createElement({tagName: 'section', className: 'order-success__container'});
   orderSuccessContainer.innerHTML = `

@@ -1,6 +1,11 @@
 import {cartService} from "./cartService";
 import {callApi} from "../helpers/apiHelper";
 
+/**
+ * OrderService class
+ * @name OrderService
+ * @class
+ */
 class OrderService {
 
   /**

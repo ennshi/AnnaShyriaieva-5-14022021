@@ -8,7 +8,6 @@ import {PAGES} from '../helpers/constants';
  * @param {HTMLElement} navbarContainer
  * @returns {void}
  */
-
 export function renderNavbar(navbarContainer) {
     const navbarInnerContainer = createElement({tagName: 'div', className: 'navbar__inner-container'});
     navbarInnerContainer.append(renderHomeBtn(), renderCartBtn());
@@ -19,7 +18,6 @@ export function renderNavbar(navbarContainer) {
  * Render the navigation home button
  * @returns {HTMLElement} navigation home button
  */
-
 function renderHomeBtn() {
     const homeBtn = createElement({tagName: 'button', className: 'navbar__btn', attributes: {'aria-label': 'Aller à l\'accueil'}});
     const logoImage = createElement({tagName: 'img', attributes: {src: logo, alt: 'Orinoco logo'}});
@@ -32,7 +30,6 @@ function renderHomeBtn() {
  * Render the navigation cart button
  * @returns {HTMLElement} navigation cart button
  */
-
 function renderCartBtn() {
     const cartBtnContainer = createElement({tagName: 'div', className: 'cart-btn__container'});
     const cartBtnBadge = createElement({tagName: 'div', className: 'badge--cart', attributes: {id: 'cart-badge'}});

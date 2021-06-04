@@ -5,7 +5,6 @@ import {formFields} from './constants';
  * @param {Contacts} values values object
  * @returns {Contacts | null} errors
  */
-
 export function validateValues(values) {
   const errors = {};
 
@@ -46,43 +45,39 @@ export function validateValues(values) {
 
 /**
  * Check empty value
- * @param {String | undefined} val text value
+ * @param {String} [val] text value
  * @returns {Boolean} is not valid
  */
-
 function emptyValue (val) {
   return (val && typeof val === 'string') ? !val.trim() : true;
 }
 
 /**
  * Check string minimal length
- * @param {String | undefined} val text value
+ * @param {String} [val] text value
  * @param {Number} minNumChar minimum number of chars
  * @returns {Boolean} is not valid
  */
-
 function minLengthValue (val, minNumChar) {
   return (val && typeof val === 'string') ? val.trim().length < minNumChar : true;
 }
 
 /**
  * Check string maximum length
- * @param {String | undefined} val text value
+ * @param {Strin} [val] text value
  * @param {Number} maxNumChar maximum number of chars
  * @returns {Boolean} is not valid
  */
-
 function maxLengthValue (val, maxNumChar) {
   return (val && typeof val === 'string') ? val.trim().length > maxNumChar : true;
 }
 
 /**
  * Check string pattern match
- * @param {String | undefined} val text value
+ * @param {String} [val] text value
  * @param {RegExp} pattern regex to check
  * @returns {Boolean} is not valid
  */
-
 function patternValidation (val, pattern) {
   return (val && typeof val === 'string') ? !pattern.test(val.trim()) : true;
 }

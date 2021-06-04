@@ -5,7 +5,6 @@ import {createElement} from '../helpers/domHelper';
  * @param {String} text
  * @returns {HTMLElement} header
  */
-
 export function renderHeader (text) {
     const h = createElement({tagName: 'h1', className: 'header'});
     h.innerText = text;

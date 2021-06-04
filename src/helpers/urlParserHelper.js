@@ -1,9 +1,8 @@
 /**
  * Get hash
- * @param {String | undefined} hashWithQuery
+ * @param {String} [hashWithQuery]
  * @returns {String} hash
  */
-
 export const getHash = (hashWithQuery) => {
     if(!hashWithQuery) return '';
     return hashWithQuery.split('?')[0];
@@ -11,10 +10,9 @@ export const getHash = (hashWithQuery) => {
 
 /**
  * Get query parameters
- * @param {String | undefined} hashWithQuery
- * @returns {{[String] : String}} query object
+ * @param {String} [hashWithQuery]
+ * @returns {Object.<string, string>} query object
  */
-
 export const getQueryObj = (hashWithQuery) => {
     if(!hashWithQuery) return {};
     const queryPart = hashWithQuery.split('?')[1];

@@ -8,7 +8,6 @@ import {cartService} from '../services/cartService';
  * @param {Bear} bear
  * @returns {HTMLElement} bear card
  */
-
 export function renderBearCard({_id, name, imageUrl, price, colors} = defaultBear) {
     const cardContainer = createElement({tagName: 'article', className: 'bear-card__container'});
     const {getSelectedColor, setSelectedColor} = colorSelector(colors);
@@ -40,7 +39,6 @@ export function renderBearCard({_id, name, imageUrl, price, colors} = defaultBea
  * @param {Bear} bear
  * @returns {HTMLElement} cardBodyContainer
  */
-
 function renderCardBody({name, price}) {
     const cardBodyContainer = createElement({tagName: 'div', className: 'card-body__container'});
     const cardBodyRightBlock = createElement({tagName: 'div', className: 'card-body__right-block'});
@@ -64,7 +62,6 @@ function renderCardBody({name, price}) {
  * @param {Bear} bear
  * @returns {HTMLElement} cardMediaContainer
  */
-
 function renderCardMedia({imageUrl, name}) {
     const cardMediaContainer = createElement({tagName: 'div', className: 'card-media__container'});
     const cardImage = createElement({tagName: 'img', className: 'card-media__img', attributes: {src: imageUrl, alt: `Ours ${name}`}});
@@ -78,7 +75,6 @@ function renderCardMedia({imageUrl, name}) {
  * @param {ColorSelector} colorSelector
  * @returns {HTMLElement} colorsContainer
  */
-
 function renderColors({colors, _id}, {getSelectedColor, setSelectedColor}) {
     const colorsContainer = createElement({tagName: 'div', className: 'colors__container', attributes: {id: `colorsContainer-${_id}`}});
     colors.forEach((color, i) => {
@@ -103,7 +99,6 @@ function renderColors({colors, _id}, {getSelectedColor, setSelectedColor}) {
  * @param {String[]} colors
  * @returns {ColorSelector} color selector
  */
-
 function colorSelector(colors = ['white']) {
     let selectedColor = colors[0];
 
@@ -120,7 +115,6 @@ function colorSelector(colors = ['white']) {
  * @param {Bear} bear
  * @returns {HTMLElement} buyButton element
  */
-
 function renderBuyIcon({name}) {
     const buyBtn = createElement({tagName: 'button', className: 'btn--buy-icon', attributes: {'aria-label': `Ajouter l'ours ${name} au panier`}});
     const buyIcon = createElement({tagName: 'i', className: 'fas fa-shopping-cart'});

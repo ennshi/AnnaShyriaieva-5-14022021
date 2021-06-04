@@ -11,7 +11,6 @@ import {PAGES} from '../helpers/constants';
  * @param {HTMLElement} rootContainer
  * @returns {void}
  */
-
 export function renderCartPage(rootContainer) {
     rootContainer.innerHTML = '';
 
@@ -22,6 +21,10 @@ export function renderCartPage(rootContainer) {
 
     const items = cartService.getItemsFromCart();
 
+    /**
+     * Render an empty cart state
+     * @returns {void}
+     */
     const renderEmptyList = () => {
         const emptyContainer = createElement({tagName: 'div', className: 'cart__empty-state'});
         emptyContainer.innerHTML = `
@@ -62,7 +65,6 @@ export function renderCartPage(rootContainer) {
 /**
  * @returns {void}
  */
-
 export function updateTotalPrice() {
     const totalPriceElement = document.getElementById('totalPrice');
     if(!totalPriceElement) return;

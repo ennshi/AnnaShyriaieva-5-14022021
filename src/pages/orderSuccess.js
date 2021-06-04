@@ -6,7 +6,6 @@ import {renderOrderSuccess} from "../components/orderResult";
  * @param {OrderSuccessQueryData} orderSuccessQueryData
  * @returns {void}
  */
-
 export function renderSuccessPage (rootContainer, {total, id}) {
   rootContainer.innerHTML = '';
 

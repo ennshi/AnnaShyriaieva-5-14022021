@@ -29,7 +29,6 @@ class BearsService {
      * @param {Number} id bear's id
      * @returns {Promise<Bear> | Bear}
      */
-
     async getBearById(id) {
         if(!id) return;
 
@@ -48,7 +47,6 @@ class BearsService {
      * Get all bears from the session storage
      * @returns {Bear[]}
      */
-
     getAllBearsFromSessionStorage() {
         const bears = sessionStorage.getItem('bears');
         if(!bears) return null;

@@ -23,7 +23,6 @@ class CartService {
      * Get all items from cart
      * @returns {CartItem[]} cart items list
      */
-
     getItemsFromCart() {
         const cartItems = localStorage.getItem('cart');
         if(!cartItems) return [];
@@ -35,7 +34,6 @@ class CartService {
      * @param {CartItem} cartItem cart item
      * @returns {void}
      */
-
     addItemToCart({item, amount = 1}) {
         if(!item) return;
 
@@ -65,7 +63,6 @@ class CartService {
      * @param {Number} amount item number
      * @returns {void}
      */
-
     removeItemFromCart(id, color, amount = 0) {
         const items = this.getItemsFromCart();
         const bearFromCartIdx = items.findIndex(b => (b.item.id === id && b.item.color === color));
@@ -90,7 +87,6 @@ class CartService {
      * Get the total price
      * @returns {Number} total price
      */
-
     getTotalPrice() {
         const items = this.getItemsFromCart();
         if(!items) return 0;
@@ -101,7 +97,6 @@ class CartService {
      * Clear the cart
      * @returns {void}
      */
-
     clearCart() {
         localStorage.removeItem('cart');
         this.displayItemsNumber();
