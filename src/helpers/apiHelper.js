@@ -1,4 +1,6 @@
-const API_URL_DEV = 'http://localhost:3000/api/teddies';
+const API_URL = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/api/teddies'
+    : 'https://backend-for-bears.herokuapp.com/api/teddies';
 
 /**
  * API helper
@@ -8,7 +10,7 @@ const API_URL_DEV = 'http://localhost:3000/api/teddies';
  * @returns {Promise<any>} 
  */
 async function callApi(endpoint, method = 'GET', data = null) {
-    const url = API_URL_DEV + endpoint;
+    const url = API_URL + endpoint;
     const options = {
         mode: 'cors',
         method,
