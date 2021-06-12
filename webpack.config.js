@@ -1,16 +1,39 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     mode: 'production',
     entry: {
-        index: './src/pages/index.js',
-        cart: './src/pages/cart.js',
+        index: './src/index.js',
     },
     output: {
-        filename: '[name].js',
-        path: __dirname + '/docs/js',
+        filename: 'index_bundle.js',
+        path: path.resolve(__dirname, 'docs/'),
     },
     devServer: {
-        contentBase: __dirname + '/docs',
-        compress: true,
+        contentBase: path.resolve(__dirname, '/docs'),
         port: 9000,
     },
+    module: {
+        rules: [
+            {
+                test: /\.(html)$/,
+                use: ['html-loader']
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(webp|svg)$/i,
+                type: 'asset/resource',
+            },
+        ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/static/index.html',
+        }),
+    ],
 };
