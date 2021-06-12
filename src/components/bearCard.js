@@ -8,7 +8,7 @@ import {cartService} from '../services/cartService';
  * @param {Bear} bear
  * @returns {HTMLElement} bear card
  */
-export function renderBearCard({_id, name, imageUrl, price, colors} = defaultBear) {
+export function renderBearCard({_id, name, imageUrl, price, colors}) {
     const cardContainer = createElement({tagName: 'article', className: 'bear-card__container'});
     const {getSelectedColor, setSelectedColor} = colorSelector(colors);
     const colorsContainer = renderColors({colors, _id}, {setSelectedColor, getSelectedColor});

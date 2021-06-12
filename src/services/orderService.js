@@ -10,8 +10,8 @@ class OrderService {
 
   /**
    * Send an order
-   * @param {{[String]: String | undefined}} values form values
-   * @returns {Promise<SendOrderResponse> | undefined}
+   * @param {Contacts} [values] form values
+   * @returns {Promise<SendOrderResponse>}
    */
   async sendOrder(values) {
     const cartItems = cartService.getItemsFromCart();

@@ -2,9 +2,9 @@ const API_URL_DEV = 'http://localhost:3000/api/teddies';
 
 /**
  * API helper
- * @param {String} endpoint
- * @param {String} [method]
- * @param {Object.<string, string>} [data]
+ * @param {String} endpoint request url
+ * @param {'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'} [method] http method
+ * @param {Object.<string, string>} [data] request body
  * @returns {Promise<any>} 
  */
 async function callApi(endpoint, method = 'GET', data = null) {

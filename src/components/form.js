@@ -16,27 +16,33 @@ export function renderForm() {
   const submitBtnContainer = createElement({tagName: 'div', className: 'form__btn-container'});
   const submitBtn = createElement({tagName: 'button', className: 'btn--basic'});
   submitBtn.innerText = 'Commander';
-  submitBtn.addEventListener('click', () => {
-    const values = formFields.reduce((acc, {fieldName}) => {
-      acc[fieldName] = document.getElementById(fieldName).value;
-      return acc;
-    }, {});
-    const errors = validateValues(values);
-    if(errors) {
-      updateFormFields(values, errors);
-    } else {
-      orderService.sendOrder(values)
-      .then((res) => {
-        const total = cartService.getTotalPrice();
-        cartService.clearCart();
-        router.navigate(`${PAGES.ORDER_SUCCESS}?total=${total}&id=${res.orderId}`);
-      })
-      .catch(e => console.log(e));
-    }
-  })
+  submitBtn.addEventListener('click', sendFormValues);
   submitBtnContainer.append(submitBtn);
   form.append(fieldsList, submitBtnContainer);
   return form;
+}
+
+/**
+ * Send the form values to the server
+ * @returns {void}
+ */
+function sendFormValues() {
+  const values = formFields.reduce((acc, {fieldName}) => {
+    acc[fieldName] = document.getElementById(fieldName).value;
+    return acc;
+  }, {});
+  const errors = validateValues(values);
+  if(errors) {
+    updateFormFields(values, errors);
+  } else {
+    orderService.sendOrder(values)
+    .then((res) => {
+      const total = cartService.getTotalPrice();
+      cartService.clearCart();
+      router.navigate(`${PAGES.ORDER_SUCCESS}?total=${total}&id=${res.orderId}`);
+    })
+    .catch(e => console.log(e));
+  }
 }
 
 /**
