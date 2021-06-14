@@ -36,7 +36,8 @@ function renderBearDetailsContainer(bear) {
  */
 function renderBearDetailsImage({imageUrl, name}) {
     const imgContainer = createElement({tagName: 'div', className: 'bear-details__img-container'});
-    const bearImg = createElement({tagName: 'img', className: 'bear-details__img', attributes: {alt: `Ours ${name}`, src: imageUrl}});
+    const src = process.env.NODE_ENV === 'production' ? imageUrl.replace('http', 'https') : imageUrl;
+    const bearImg = createElement({tagName: 'img', className: 'bear-details__img', attributes: {alt: `Ours ${name}`, src}});
     imgContainer.append(bearImg);
     return imgContainer;
 }
