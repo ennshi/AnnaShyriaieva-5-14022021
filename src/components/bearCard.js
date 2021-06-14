@@ -63,8 +63,9 @@ function renderCardBody({name, price}) {
  * @returns {HTMLElement} cardMediaContainer
  */
 function renderCardMedia({imageUrl, name}) {
+    const src = process.env.NODE_ENV === 'production' ? imageUrl.replace('http', 'https') : imageUrl;
     const cardMediaContainer = createElement({tagName: 'div', className: 'card-media__container'});
-    const cardImage = createElement({tagName: 'img', className: 'card-media__img', attributes: {src: imageUrl, alt: `Ours ${name}`}});
+    const cardImage = createElement({tagName: 'img', className: 'card-media__img', attributes: {src, alt: `Ours ${name}`}});
     cardMediaContainer.appendChild(cardImage);
     return cardMediaContainer;
 }
